@@ -55,5 +55,14 @@ if ingredients_list:
         st.success('Your Smoothie is ordered!', icon="✅")
 import requests
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon", timeout=10)
-st.text(smoothiefroot_response)
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+
+# Check if the response status code is 200 (success)
+if smoothiefroot_response.status_code == 200:
+    # Convert the response to JSON format
+    response_json = smoothiefroot_response.json()
+    
+    # Display the JSON response
+    st.json(response_json)
+else:
+    st.text(f"Response {smoothiefroot_response.status_code}")
