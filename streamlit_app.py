@@ -55,14 +55,19 @@ if ingredients_list:
         st.success('Your Smoothie is ordered!', icon="✅")
 import requests
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+# Replace 'your_api_key' with your actual API key
+api_key = 'your_api_key'
+fruit_name = 'watermelon'
+url = f"https://www.fruityvice.com/api/fruit/{fruit_name}"
 
-# Check if the response status code is 200 (success)
-if smoothiefroot_response.status_code == 200:
-    # Convert the response to JSON format
-    response_json = smoothiefroot_response.json()
-    
-    # Display the JSON response
+headers = {
+    'Authorization': f'Bearer {api_key}'
+}
+
+response = requests.get(url, headers=headers)
+
+if response.status_code == 200:
+    response_json = response.json()
     st.json(response_json)
 else:
-    st.text(f"Response {smoothiefroot_response.status_code}")
+    st.text(f"Response {response.status_code}")
