@@ -54,20 +54,5 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
 import requests
-
-# Replace 'your_api_key' with your actual API key
-api_key = 'your_api_key'
-fruit_name = 'watermelon'
-url = f"https://www.fruityvice.com/api/fruit/{fruit_name}"
-
-headers = {
-    'Authorization': f'Bearer {api_key}'
-}
-
-response = requests.get(url, headers=headers)
-
-if response.status_code == 200:
-    response_json = response.json()
-    st.json(response_json)
-else:
-    st.text(f"Response {response.status_code}")
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
